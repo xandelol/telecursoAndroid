@@ -12,7 +12,7 @@
         android:orientation="horizontal"
         app:layout_widthPercent="70%"
         app:layout_heightPercent="8%"
-        app:layout_marginTopPercent="5%"
+        app:layout_marginTopPercent="2%"
         app:layout_marginLeftPercent="15%"
         android:background="@drawable/rounded_edittext">
         <ImageView
@@ -34,5 +34,9 @@
             android:background="@android:color/transparent"
             android:textSize="25dp"/>
     </LinearLayout>
-
+    <ListView
+        android:id="@+id/movies"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_marginTopPercent="12%"/>
 </android.support.percent.PercentRelativeLayout>
