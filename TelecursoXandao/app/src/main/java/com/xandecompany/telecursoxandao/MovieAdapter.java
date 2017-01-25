@@ -1,11 +1,10 @@
 package com.xandecompany.telecursoxandao;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -13,31 +12,33 @@ import java.util.List;
  * Created by Alexandre on 11/01/2017.
  */
 
-public class MovieAdapter extends ArrayAdapter<Movie> {
-    private int layout;
+public class MovieAdapter extends RecyclerView.Adapter {
 
-    public MovieAdapter(Context context, int layout, List<Movie> movies){
-        super(context, layout, movies);
-        this.layout = layout;
+    private List<Movie> movies;
+    private Context context;
+
+    public MovieAdapter(List<Movie> movies, Context context){
+        this.movies = movies;
+    }
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        View view = LayoutInflater.from(context).inflate(R.layout.main_activity,parent,false);
+        MovieViewHolder holder = new MovieViewHolder(view);
+        return holder;
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent){
-        if (view == null){
-            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(this.layout, parent, false);
-        }
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position){
+        MovieViewHolder holder = (MovieViewHolder) viewHolder;
 
-        TextView name = (TextView) view.findViewById(R.id.nameMovie);
-        TextView year = (TextView) view.findViewById(R.id.yearMovie);
-        TextView rating = (TextView) view.findViewById(R.id.ratingMovie);
+        Movie movie = movies.get(position);
+        holder.name.setText(movie.getNome());
+        holder.year.setText(movie.getYear());
+        holder.rating.setText(movie.getRating());
+    }
 
-        Movie movie = getItem(position);
-
-        name.setText(movie.getNome());
-        year.setText("Year: " + movie.getYear());
-        rating.setText(String.valueOf(movie.getRating()));
-
-        return view;
+    @Override
+    public int getItemCount(){
+        return movies.size();
     }
 }

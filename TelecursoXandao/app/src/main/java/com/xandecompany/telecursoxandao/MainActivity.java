@@ -5,8 +5,13 @@ package com.xandecompany.telecursoxandao;
  */
 import android .app . Activity ;
 import android .os. Bundle ;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android . widget . TextView ;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -28,9 +33,9 @@ public class MainActivity extends Activity {
         movies.add(new Movie("Movie 9",4,2003));
         movies.add(new Movie("Movie 10",8,2002));
 
-        MovieAdapter adapter = new MovieAdapter(this, R.layout.list_view_item_movie, movies);
+        //MovieAdapter adapter = new MovieAdapter(this, R.layout.list_view_item_movie, movies);
 
-        ListView listView = (ListView) findViewById(R.id.movies);
+        RecyclerView listView = (RecyclerView) findViewById(R.id.movies);
 
         Bundle extras = getIntent().getExtras();
         String user = extras.getString("user");
@@ -39,6 +44,9 @@ public class MainActivity extends Activity {
         TextView userTextView = (TextView) findViewById(R.id.user);
 
         userTextView.setText(getString(R.string.user_name, user));
-        listView.setAdapter(adapter);
+        listView.setAdapter(new MovieAdapter(movies,this));
+
+        RecyclerView.LayoutManager layout = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        listView.setLayoutManager(layout);
     }
 }

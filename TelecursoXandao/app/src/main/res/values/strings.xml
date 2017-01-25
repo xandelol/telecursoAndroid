@@ -8,4 +8,8 @@
     <string name="main_title">Tela principal</string>
     <string name="user_name">%1s</string>
     <string name="pass_word">%1s</string>
+    <string name="edit_name">Nome</string>
+    <string name="edit_year">Ano</string>
+    <string name="edit_rating">Nota</string>
+    <string name="edit_save">Salvar</string>
 </resources>
