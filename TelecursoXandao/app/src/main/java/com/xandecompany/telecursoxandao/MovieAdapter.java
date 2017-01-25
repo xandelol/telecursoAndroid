@@ -16,13 +16,15 @@ public class MovieAdapter extends RecyclerView.Adapter {
 
     private List<Movie> movies;
     private Context context;
+    public static ClickRecyclerView_Interface clickRecyclerViewInterface;
 
     public MovieAdapter(List<Movie> movies, Context context){
         this.movies = movies;
+        this.context = context;
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View view = LayoutInflater.from(context).inflate(R.layout.main_activity,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.list_view_item_movie,parent,false);
         MovieViewHolder holder = new MovieViewHolder(view);
         return holder;
     }
@@ -33,8 +35,8 @@ public class MovieAdapter extends RecyclerView.Adapter {
 
         Movie movie = movies.get(position);
         holder.name.setText(movie.getNome());
-        holder.year.setText(movie.getYear());
-        holder.rating.setText(movie.getRating());
+        holder.year.setText(movie.getYear()+"");
+        holder.rating.setText(movie.getRating()+"");
     }
 
     @Override
